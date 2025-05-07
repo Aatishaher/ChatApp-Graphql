@@ -15,7 +15,8 @@ export default defineConfig({
         'graphql-ws',
         'socket.io-client',
         'subscriptions-transport-ws',
-        'jwt-decode'
+        'jwt-decode',
+        'react-router-dom'
     ]
   },
 })
