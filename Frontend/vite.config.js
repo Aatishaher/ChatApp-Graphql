@@ -6,5 +6,10 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     include: ['jwt-decode']
-  }
+  },
+  build: {
+    rollupOptions: {
+      external: ['jwt-decode'],
+    },
+  },
 })
