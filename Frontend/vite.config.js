@@ -7,9 +7,15 @@ export default defineConfig({
   optimizeDeps: {
     include: ['jwt-decode']
   },
-  build: {
-    rollupOptions: {
-      external: ['jwt-decode'],
-    },
+  rollupOptions: {
+    external: [
+      'react', 
+        'react-dom', 
+        'graphql', 
+        'graphql-ws',
+        'socket.io-client',
+        'subscriptions-transport-ws',
+        'jwt-decode'
+    ]
   },
 })
