@@ -59,7 +59,7 @@ async function startServer() {
   app.use(
     '/graphql',
     cors({
-      origin: 'http://localhost:5173',
+      origin: ['http://localhost:5173', 'https://chat-app-graphql-pbxy.vercel.app'],
       credentials: true,
     }),
     express.json(),
