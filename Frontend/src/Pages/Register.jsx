@@ -46,64 +46,74 @@ const Register = () => {
       console.error("Registration error:", err.message);
     }
   };
-
-  return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "50px auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-      }}
-    >
-      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Register</h2>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-            required
-          />
+    return (
+      <div
+        style={{
+          maxWidth: "400px",
+          margin: "50px auto",
+          padding: "20px",
+          border: "1px solid #ccc",
+        }}
+      >
+        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Register</h2>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ marginBottom: "15px" }}>
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={handleChange}
+              style={{ width: "100%", padding: "8px" }}
+              required
+            />
+          </div>
+          <div style={{ marginBottom: "15px" }}>
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              style={{ width: "100%", padding: "8px" }}
+              required
+            />
+          </div>
+          <div style={{ marginBottom: "15px" }}>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              style={{ width: "100%", padding: "8px" }}
+              required
+            />
+          </div>
+          <button type="submit" disabled={loading} style={{ padding: "10px", backgroundColor: "#007bff", color: "#fff" }}>
+            {loading ? "Registering..." : "Register"}
+          </button>
+          {error && <p style={{ color: "red", marginTop: "10px" }}>{error.message}</p>}
+        </form>
+  
+        <p style={{ textAlign: "center", marginTop: "15px" }}>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+  
+        {/* 🔽 Button to navigate to Login */}
+        <div style={{ marginTop: "10px", textAlign: "center" }}>
+          <button
+            onClick={() => navigate('/login')}
+            style={{ padding: "10px 15px", backgroundColor: "#28A745", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer" }}
+          >
+            Go to Login
+          </button>
         </div>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-            required
-          />
-        </div>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-            required
-          />
-        </div>
-        <button type="submit" disabled={loading} style={{ padding: "10px", backgroundColor: "#007bff", color: "#fff" }}>
-          {loading ? "Registering..." : "Register"}
-        </button>
-        {error && <p style={{ color: "red", marginTop: "10px" }}>{error.message}</p>}
-      </form>
-      <p style={{ textAlign: "center", marginTop: "15px" }}>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </div>
-  );
-};
-
-export default Register;
+      </div>
+    );
+  };
+  
+  export default Register;

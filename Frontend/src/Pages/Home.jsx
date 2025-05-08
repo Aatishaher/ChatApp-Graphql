@@ -1,29 +1,49 @@
-import React, { useState } from 'react'
-import SideBar from '../Components/SideBar'
-import UserChatWindow from '../Components/UserChatWindow'
+import React, { useState, useEffect } from 'react';
+import SideBar from '../Components/SideBar';
+import UserChatWindow from '../Components/UserChatWindow';
 import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
     const [selectedUser, setSelectedUser] = useState(null);
-    const token=localStorage.getItem('token');
-    const decode=jwtDecode(token);
-    const id=decode.id;
-    console.log(id);
+    const [userId, setUserId] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+        } else {
+            try {
+                const decode = jwtDecode(token);
+                setUserId(decode.id);
+            } catch (err) {
+                console.error('Invalid token:', err);
+                navigate('/login');
+            }
+        }
+    }, [navigate]);
+
     const handleUserSelect = (user) => {
         setSelectedUser(user);
     };
 
+    if (!userId) {
+        return null; 
+    }
+
     return (
         <div style={{
-                display: 'flex',
-                height: '80vh',
-                width: '80vw',
-                overflow: 'hidden',
-                backgroundColor: '#f0f2f5'
+            display: 'flex',
+            height: '80vh',
+            width: '80vw',
+            overflow: 'hidden',
+            backgroundColor: '#f0f2f5'
         }}>
-            <SideBar onUserSelect={handleUserSelect} id={id} />
+            <SideBar onUserSelect={handleUserSelect} id={userId} />
             <div style={{ flex: 1, display: 'flex' }}>
                 {selectedUser ? (
-                    <UserChatWindow user={selectedUser} id={id} />
+                    <UserChatWindow user={selectedUser} id={userId} />
                 ) : (
                     <div style={{
                         flex: 1,
@@ -38,7 +58,7 @@ const Home = () => {
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

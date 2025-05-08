@@ -6,8 +6,6 @@ import { useEffect } from "react";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-
     const LOGIN_USER = gql`
         mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
@@ -72,9 +70,19 @@ const Login = () => {
                     Login
                 </button>
             </form>
+
             <p style={{ marginTop: '15px', textAlign: 'center' }}>
                 Do not have an account? <Link to="/register" style={{ color: '#007BFF', textDecoration: 'none' }}>Register</Link>
             </p>
+
+            <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                <button 
+                    onClick={() => navigate('/register')}
+                    style={{ padding: '10px 15px', backgroundColor: '#28A745', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                >
+                    Go to Register
+                </button>
+            </div>
         </div>
     );
 };
