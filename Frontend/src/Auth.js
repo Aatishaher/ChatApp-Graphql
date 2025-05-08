@@ -6,7 +6,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 
 // HTTP Link
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://chatapp-graphql.onrender.com/graphql',
 });
 
 // Auth middleware
@@ -22,7 +22,7 @@ const authLink = setContext((_, { headers }) => {
 
 // WebSocket link using graphql-ws
 const wsLink = new GraphQLWsLink(createClient({
-  url: 'ws://localhost:4000/graphql',
+  url: 'wss://chatapp-graphql.onrender.com/graphql',
   connectionParams: {
     authorization: `Bearer ${localStorage.getItem('token')}`,
   },
